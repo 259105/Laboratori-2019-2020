@@ -48,7 +48,7 @@ int main(){
             s=1;
         }
         if(P!=0){
-            printf("Inserisci la direzione in cui ruotare:\n");
+            printf("Inserisci la direzione in cui ruotare(1 per Sx, -1 per Dx):\n");
             scanf("%d",&dir);
             ruota(V,N,P,dir);
             for (i=0;i<N;i++){
