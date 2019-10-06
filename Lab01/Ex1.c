@@ -65,6 +65,7 @@ int leggifile(int matrice[][max],int s,int g){
             }
         }
     }
+    fclose(fp);
     return 1;
 }
 
