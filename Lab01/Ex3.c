@@ -86,7 +86,7 @@ int menu(int *selettore,int *indice,int *direzione,int *posizione){
             return 0;
         }
         scanf("%d %s %d", indice, dir, posizione);
-        for (i = 0; i < MAX_FILE; i++) {
+        for (i = 0; i < MAX_FILE; i++) { //Questo serve per non avere problemi di maiuscolo o minuscolo
             sel[i] = tolower(sel[i]);
             dir[i] = tolower(dir[i]);
         }
@@ -126,7 +126,8 @@ void ruota(int M[][MAX_MATRICE],int nr,int nc,int selettore, int direzione,int i
 
     if(selettore==1){
         //Riga
-        if(posizione>nc){
+        if(posizione>nc){ //Questo serve in caso ci sono dei spostamenti maggiori della matrice stessa
+                            //Prendo il resto della divisione rotazione_tot_posizione/lunghezza_riga/colonna
             posizione=posizione%(nc+1);//Faccio +1 perche mi servono le righe effettive e non quelle contate a partire
                                         // da 0.
         }
