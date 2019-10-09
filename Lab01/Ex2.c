@@ -10,13 +10,13 @@
 #define Np 25
 #define maxdiz 30
 
-void ricodifica(char frase[],int codice[],char parole[][Np+1],int n);
+void ricodifica(char frase[],char codice[][Np+1],char parole[][Np+1],int n);
 int cerca(char parole[][Np+1],char frase[],int n,int pos);
-void sostituisci(int pos, char frase[],char parola[][Np+1],int ricod[],int n);
+int sostituisci(int pos, char frase[],char parola[][Np+1],char ricod[][Np+1],int n);
 
 int main(){
-    char frase[Nf+1],parole[maxdiz][Np+1];
-    int i,n,codice[maxdiz];
+    char frase[Nf+1],parole[maxdiz][Np+1],codice[maxdiz][Np+1];
+    int i,n;
     FILE *srg, *ric, *diz;
 
     if((srg=fopen("sorgente.txt","r"))==NULL){
@@ -34,7 +34,7 @@ int main(){
 
     fscanf(diz,"%d",&n);
     for(i=0;i<n;i++){
-        fscanf(diz,"\n$%d$ %s",&codice[i],parole[i]);
+        fscanf(diz,"%s %s",codice[i],parole[i]);
     }
 
     while(fgets(frase,200,srg)!=NULL){
@@ -44,7 +44,7 @@ int main(){
     fclose(srg);
 }
 
-void ricodifica(char frase[],int codice[],char parole[][Np+1],int n){
+void ricodifica(char frase[],char codice[][Np+1],char parole[][Np+1],int n){
     int i,posizione=0;
     for(i=0;i<n;i++){//Questo contatore lo uso per cambiare ogni volta parola da controllare nella frase
                     //Faccio un ciclo while cosi da poter controllare più volte la stessa parola nella stessa frase
@@ -65,8 +65,10 @@ int cerca(char parole[][Np+1],char frase[],int n,int pos){
     //la sottostringa con la parola del dizionario, che viene invece contata lettera per lettera da k.
     l_frase=strlen(frase);
     l_parola=strlen(parole[n]);
+
+
     for(i=pos;i<=(l_frase-l_parola);i++){ //la condizione l'ho scelta cosi nonostante esce fuori dall sotto-vettore di
-                                        //interesse per evitare eventuale errori di tipo \n o \0
+                                                    //interesse per evitare eventuale errori di tipo \n o \0
         for(j=i,k=0;j<=i+l_parola-1;j++) { //-1 perche il contatore parte da 0, mentre la lunghezza della parola è
                                             //contata partendo da 1
             if(parole[n][k]==frase[j]){
@@ -80,22 +82,23 @@ int cerca(char parole[][Np+1],char frase[],int n,int pos){
     return 0;
 }
 
-void sostituisci(int pos, char frase[],char parola[][Np+1],int ricod[],int n){
-    int i,j,l_sostituzione,l_parola;
-    char sostituzione[10],frase_supporto[Nf];
+int sostituisci(int pos, char frase[],char parola[][Np+1],char ricod[][Np+1],int n){
+    int i,j,l_ricod,l_parola;
+    char frase_supporto[Nf];
     //i= usato come cont. nella stringa "frase"
     //j= usato come cont. nella stringa "sostituzione"
-    sprintf(sostituzione,"$%d$",ricod[n]);
+
     strcpy(frase_supporto,frase); //mi salvo la frase per non avere perdita di dati, come ad esempio avere una
                                 //sostituzione troppo lunga può provocare perdita di dati.
-    l_sostituzione=strlen(sostituzione);
+    l_ricod=strlen(ricod[n]);
     l_parola=strlen(parola[n]);
 
-    for(i=pos,j=0;j<l_sostituzione;i++,j++){ //sostituisco la parte di parola con il codice
-        frase[i]=sostituzione[j];
+    for(i=pos,j=0;j<l_ricod;i++,j++){ //sostituisco la parte di parola con il codice
+        frase[i]=ricod[n][j];
     }
     while (i<Nf){  //proseguo sempre dallo stesso indice i fino a fine vettore copiando la frase di supporto.
-        frase[i]=frase_supporto[i-l_sostituzione+l_parola];
+        frase[i]=frase_supporto[i-l_ricod+l_parola];
         i++;
     }
+    return 1;
 }
