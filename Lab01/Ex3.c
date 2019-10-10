@@ -115,37 +115,36 @@ int menu(int *selettore,int *indice,int *direzione,int *posizione){
 }
 
 void ruota(int M[][MAX_MATRICE],int n,int selettore, int direzione,int indice,int posizione){
-    int i,j,V[MAX_MATRICE];
+    int i,V[MAX_MATRICE];
     //Vn è il vettore nuovo ovvero il vettore che contiene la "rotazione"
     if(posizione>n){
         posizione=posizione%(n);
     }
-    if(direzione==1){
+    if(direzione==-1){
         posizione=n-posizione; //Trasformo la direzione da su a giu oppure da sinistra a destra
     }
-    n--;//cosi è il numero di righe se comincio a contare da 0.
+    //n--;//cosi è il numero di righe se comincio a contare da 0.
     indice--;// tengo in considerazione che devo contare da 0 in poi
 
     //selettore 1=riga 2=colonna
     //direzione -1=destra/giu 1=sinistra/su
-    for(i=0,j=0;i<=n;i++){          //Prendo il vettore nella matrice che mi interessa
-        if(i<=n-posizione)
-            if(selettore==1)        //Sposto dal primo fino al n-spostamento
-                V[i+posizione]=M[indice][i];
+    for(i=0;i<n;i++){
+        if(i<posizione)
+            if(selettore==1)
+                V[i]=M[indice][i];
             else
-                V[i+posizione]=M[i][indice];
+                V[i]=M[i][indice];
         else {
-            if(selettore==1) // sposto dal n-spostamento all'ultimo
-                V[j] = M[indice][i];
+            if(selettore==1)
+                M[indice][i-posizione] = M[indice][i];
             else
-                V[j] = M[i][indice];
-            j++;
+                M[i-posizione][indice]= M[i][indice];
         }
     }
-    for(i=0;i<=n;i++){// Ricopio il vettore creato
+    for(i=0;i<posizione;i++){// Ricopio il vettore creato
         if(selettore==1)
-            M[indice][i]=V[i];
+            M[indice][n-posizione+i]=V[i];
         else
-            M[i][indice]=V[i];
+            M[n-posizione+i][indice]=V[i];
     }
 }
