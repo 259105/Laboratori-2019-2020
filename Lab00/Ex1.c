@@ -29,6 +29,11 @@ int main(){
             count=0;
         }else{
             count++;
+            if(count==max){
+                p[j]=i;
+                j++;
+                serie++;
+            }
             if(count>max){
                 max=count;
                 j=0;
@@ -36,27 +41,8 @@ int main(){
                 j++;
                 serie=1;
             }
-            if(count==max){
-                p[j]=i;
-                j++;, 
-                serie++;
-            }
         }
     }
-    count=0;
-
-    /*for(i=0;i<N;i++){ // Vedo e mi salvo dove finiscono i numeri consecutivi e mi segno la loro posizione del nel vettore
-        if(v[i]==0){  // Inoltre mi segno quanti intervalli di numeri bisogna stampare
-            count=0;
-        }else{
-            count++;
-            if(count==max){
-                p[j]=i;
-                j++;, 
-                serie++;
-            }
-        }
-    }*/
 
     while(k<serie){  // fase finale del print f stampo seguento la logica: prendo l'ultimo numero della serie in considerazione
         for(i=p[k]-max+1;i<=p[k];i++) // gli sottraggo quanto è grande la serie (è il massimo) e gli aggiungo 1 per far
