@@ -30,9 +30,8 @@ void ricodifica(char frase[],char codice[][Np+1],char parole[][Np+1],int n,char 
                 if(parole[i][x]==frase[y]){
                     x++;//Il contatore x lo uso ora per vedere quanti caratteri della frase sono uguali a quelli della parola da sostituire
                     if(x==l_parole){
-                        for(z=pos,x=0;pos<z+l_codice;pos++,x++){ //adesso il contatore x lo riutilizzo per la sostituzione
+                        for(z=pos,x=0;pos<z+l_codice;pos++,x++) //adesso il contatore x lo riutilizzo per la sostituzione
                             frase_r[pos]=codice[i][x];
-                        }
                         j=y+1;//dico di ripartire a contare da subito dopo la parola sostituita per non fare iterazioni inutili
                     }
                 }else{
@@ -67,9 +66,8 @@ int main(){
     }
 
     fscanf(diz,"%d",&n);
-    for(i=0;i<n;i++){
+    for(i=0;i<n;i++)
         fscanf(diz,"%s %s",codice[i],parole[i]);
-    }
 
     while(fgets(frase,200,srg)!=NULL){
         ricodifica(frase,codice,parole,n,frase_r);
