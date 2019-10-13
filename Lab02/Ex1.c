@@ -26,21 +26,11 @@ int leggimatrice(int matrice[][N],int *nr,int *nc){
     return 0;
 }
 
-void calcolomassimo(int *massimo,int *massimo_x,int *massimo_y,int valore,int posizione_x,int posizione_y){
-    if(valore>*massimo){
-        *massimo=valore;
-        *massimo_x=posizione_x;
-        *massimo_y=posizione_y;
-    }
-}
-
 int main(){
     int M[N][N];
     int nr,nc;
     int i,j,c=0,x,y; //contatori vari
-    int max_b=0,max_b_x=0,max_b_y=0; //variabili utilizzate per ospitare tutti i massimi
-    int max_h=0,max_h_x=0,max_h_y=0;
-    int max_A=0,max_A_x=0,max_A_y=0;
+    int c_b,c_h,c_A;
     rettangoli rett[N/2+1];
 
     if(leggimatrice(M,&nr,&nc)){
@@ -78,15 +68,24 @@ int main(){
                 }
                 //stampo il rettangolo trovato
                 printf("%d)%d,%d\t\t%d\t%d\t%d\n",c+1,rett[c].pos_x+1,rett[c].pos_y+1,rett[c].b,rett[c].h,rett[c].A);
-                calcolomassimo(&max_A,&max_A_x,&max_A_y,rett[c].A,rett[c].pos_x,rett[c].pos_y);//massima Area
-                calcolomassimo(&max_b,&max_b_x,&max_b_y,rett[c].b,rett[c].pos_x,rett[c].pos_y);//massima base
-                calcolomassimo(&max_h,&max_h_x,&max_h_y,rett[c].h,rett[c].pos_x,rett[c].pos_y);//massima altezza
+                //trovo i massimi e mi salvo il loro indice
+                if(c==0){
+                    c_A=c;
+                    c_b=c;
+                    c_h=c;
+                }
+                if(rett[c].A>rett[c_A].A)
+                    c_A=c;
+                if(rett[c].b>rett[c_b].b)
+                    c_b=c;
+                if(rett[c].h>rett[c_h].h)
+                    c_h=c;
                 c++;
             }
         }
     }
-    printf("\nIl rettangolo con l'altezza maggiore e' posizionato in r:%d c:%d, con un'altezza di %d",max_h_x+1,max_h_y+1,max_h);
-    printf("\nIl rettangolo con la larghezza maggiore e' posizionato in r:%d c:%d, con una larghezza di %d",max_b_x+1,max_b_y+1,max_b);
-    printf("\nIl rettangolo con l'area maggiore e' posizionato in r:%d c:%d, con un'area di %d",max_A_x+1,max_A_y+1,max_A);
+    printf("\nMax Base: estr. sup. SX=<%d,%d> b=%d, h=%d, Area=%d",rett[c_b].pos_x,rett[c_b].pos_y,rett[c_b].b,rett[c_b].h,rett[c_b].A);
+    printf("\nMax Area: estr. sup. SX=<%d,%d> b=%d, h=%d, Area=%d",rett[c_A].pos_x,rett[c_A].pos_y,rett[c_A].b,rett[c_A].h,rett[c_A].A);
+    printf("\nMax Base: estr. sup. SX=<%d,%d> b=%d, h=%d, Area=%d",rett[c_h].pos_x,rett[c_h].pos_y,rett[c_h].b,rett[c_h].h,rett[c_h].A);
     return 0;
 }
