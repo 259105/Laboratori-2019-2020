@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#define pritf__mingw_printf
 
 int controlloEndian(){
     /*
@@ -69,7 +70,7 @@ void stampaCodifica (void *p,int size,int bigEndian){
             printf("0");
             cont++;
             if(cont==spazio || cont==1)//controllo se devo stampare o no lo spazio, dopo il primo carattere
-                printf("\t ");           // stampo uno spazio per separare il segno.
+                printf("\t");           // stampo uno spazio per separare il segno.
         }
         //codifica Binario
         for(stampati=0;stampati<=esp;stampati++){
@@ -78,12 +79,12 @@ void stampaCodifica (void *p,int size,int bigEndian){
                 printf("1");
                 cont++;
                 if(cont==spazio || cont==1)
-                    printf("\t ");
+                    printf("\t");
             }else if(zeri!=8) {
                 printf("0");
                 cont++;
                 if(cont==spazio || cont==1)
-                    printf("\t ");
+                    printf("\t");
             }
             j/=2;
         }
@@ -104,10 +105,10 @@ int main(){
            "La dimenzione del longdouble e': %dbyte ovvero %dbit\n"
            ,sizeof(af),sizeof(af)*8,sizeof(ad), sizeof(ad)*8, sizeof(ald), sizeof(ald)*8);
     printf("Inserisci numero con virgola:");
-    scanf("%lf",&ad);
+    __mingw_scanf("%Lf",&ald);
     printf("\nTipo Dato\tSegno\tEsponente\tMantissa");
 
-    af=(float)ad; ald=(long double)ad;
+    af=(float)ald; ad=(double)ald;
     stampaCodifica((void *) &af, sizeof(af),bigEndian);
     stampaCodifica((void *) &ad, sizeof(ad),bigEndian);
     stampaCodifica((void *) &ald, sizeof(ald),bigEndian);
