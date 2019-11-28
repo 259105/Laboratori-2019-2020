@@ -1,0 +1,10 @@
+02 Catanzaro Nicastro 02/01/2019 06:30 07:18 4
+03 Cosenza SantEufemia 02/01/2019 09:30 10:40 10
+03 Cosenza Rende 02/01/2019 07:10 07:30 0
+02 Nicastro Catanzaro 02/01/2019 05:00 05:50 9
+01 Nicastro Sambiase 01/01/2019 00:00 00:30 0
+03 Rende Cosenza 02/01/2019 08:00 09:23 3
+01 Sambiase SantEufemia 01/01/2019 00:35 01:00 -2
+01 Sambiase Nicastro 01/01/2019 01:50 02:27 8
+01 SantEufemia Sambiase 01/01/2019 01:15 01:45 5
+03 SantEufemia Cosenza 02/01/2019 06:00 07:00 0
