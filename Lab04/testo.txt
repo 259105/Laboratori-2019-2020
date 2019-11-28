@@ -1,0 +1,9 @@
+ un I problemi di    ricerca de stringe un all interno da  un testi e o collezioni di stringe solitamente di
+dimensione maggiore rispetto alla stringa cercata si basano raramente su un confronto esatto ma
+molto spesso necessitano di rappresentare  in modo compatto non una ma un insieme di stringe
+cercate evitandone per quanto possibile l enumerazione esplicita Le espressioni regolari sono una
+notazione molto utilizzata per rappresentare in modo compatto insiemi di stringe correlate tra
+loro ad esempio aventi una parte comune
+Una espressione regolare o regexp e una sequenza di simboli quindi una stringa che identifica
+un insieme di stringe Si scriva una funzione in C in grado di individuare cercare eventuali
+occorrenze di una data regexp all interno di una stringa di input
