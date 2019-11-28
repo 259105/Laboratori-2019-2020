@@ -13,7 +13,7 @@ typedef enum{
 }Nome;
 typedef struct{
     unsigned int n;
-    //n dice quante pietre sono rimaste, Val indica il valore della pietra. Tot dice quante pietre avevo inizialmente
+    //n dice quante pietre sono rimaste
 }_pietre;
 
 int min(unsigned int n, unsigned int n1){
