@@ -112,16 +112,15 @@ int disp(int *sol,int pos, _pietre *pietre,int l,int p,int start){
 int main(void){
     int *sol,**m;
     _pietre *pietre=NULL;
-    int i,l,l_sol,r,minimo;
+    int l,l_sol,r,minimo;
     pietre=allocapietre(pietre);
     m=leggifile(&r);
     for(int j=0;j<r;j++){
         l=inputpietre(pietre,m,j);
         sol=malloc(l* sizeof(int));
-        for(i=0;i<l;i++)
-            sol[i]=-1;//significa che in quella posizione della collana non c'è nulla
         minimo=min(pietre[rubino].n,pietre[topazio].n);
         l_sol=pietre[zaffiro].n+pietre[smeraldo].n+minimo*2+1; //calcolo della lunghezza massima possibile
+        if(l_sol>l) l_sol=l;
         if(minimo==(int)pietre[rubino].n) disp(sol,0,pietre,l_sol,-1,smeraldo);
         else disp(sol,0,pietre,l_sol,-1,zaffiro);
         free(sol);
