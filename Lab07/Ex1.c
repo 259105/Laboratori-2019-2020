@@ -6,14 +6,14 @@
 #include <stdio.h>
 #define N 4 //indica il numero di pietre diverse
 //se si modifica N, va modificato in teoria tutto il programma perche ci sono gli enum
-#define nome_file "pietre.txt"
+#define nome_file "test.txt"
 
 typedef enum{
     zaffiro=0,smeraldo,rubino,topazio
 }Nome;
 typedef struct{
     unsigned int n;
-    //n dice quante pietre sono rimaste
+    //n dice quante pietre sono rimaste, Val indica il valore della pietra. Tot dice quante pietre avevo inizialmente
 }_pietre;
 
 int min(unsigned int n, unsigned int n1){
@@ -129,5 +129,8 @@ int main(void){
     freematr(m,r);
     return 0;
 }
+
+
+
 
 
