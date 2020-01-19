@@ -14,13 +14,13 @@ typedef struct{
 typedef struct{
     tubo_t vert;
     tubo_t oriz;
-    int usata; //0 := non Ë usata 1:= Ë gi‡ usata
+    int usata; //0 := non √® usata 1:= √® gi√† usata
 }tessera_t;
 
 typedef struct {
     int n;  //indica il numero della tessera presa
     int orient;// 0:= come fa file (orizziondale-verticale) 1:= girato (verticale-orizzontale)
-    // -1/-1 significa che la scacchiera Ë vuota
+    // -1/-1 significa che la scacchiera √® vuota
 }scacchiera_t;
 
 int b_val=0; //variabile globale
@@ -70,7 +70,7 @@ scacchiera_t** leggiscacchiera(int *r,int *c,tessera_t *tessera){
     for(int i=0;i<*r;i++)
         for(int j=0;j<*c;j++){
             fscanf(fp,"%d/%d",&ntess,&orient);
-            // -1/-1 significa che la scacchiera Ë vuota
+            // -1/-1 significa che la scacchiera √® vuota
             temp[i][j].n=ntess;
             temp[i][j].orient=orient;
             if(orient==1)
@@ -129,7 +129,7 @@ void aggiornamax(scacchiera_t **scacchiera,scacchiera_t **sol,int r,int c){
 void disp_sempl(scacchiera_t **scacchiera,tessera_t *tessere,scacchiera_t **b_sol,int r,int c,int n,int pos){
     int i,j,k,val_c;
     if(pos==r*c){//condizione di terminazione
-        //controllo se Ë massimo
+        //controllo se √® massimo
         val_c=calcolaval(scacchiera,tessere,r,c);
         if(val_c>b_val){
             //aggiorno i massimi
@@ -145,7 +145,7 @@ void disp_sempl(scacchiera_t **scacchiera,tessera_t *tessere,scacchiera_t **b_so
     }
     for(k=0;k<n;k++){
         if(tessere[k].usata!=1){
-            tessere[k].usata=1; // controllo che la tessera non Ë stata ancora presa e la segno come presa
+            tessere[k].usata=1; // controllo che la tessera non √® stata ancora presa e la segno come presa
             scacchiera[i][j].n=k;  scacchiera[i][j].orient=0; //orientamento originale
             disp_sempl(scacchiera,tessere,b_sol,r,c,n,pos+1);
             //cambio orientamento
