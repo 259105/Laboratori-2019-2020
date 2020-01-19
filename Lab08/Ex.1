@@ -26,15 +26,15 @@ int leggifile(att **v){
 int check(att *sol,int pos,att v){
     int i;
     for(i=0;i<pos;i++){
-        //se uno dei 2 estremi dell'attività che voglio aggiungere
-        // è dentro un'attività gia in sol, allora  incompatibile
+        //se uno dei 2 estremi dell'attivitÃ  che voglio aggiungere
+        // Ã¨ dentro un'attivitÃ  gia in sol, allora  incompatibile
         if(sol[i].s<=v.s && v.s<sol[i].f)
             return 0;
         if (sol[i].s<v.f && v.f<=sol[i].f)
             return 0;
     }
     return 1;
-    //controllo compatibilità
+    //controllo compatibilitÃ 
 
 }
 int dur(att *sol,int pos){
