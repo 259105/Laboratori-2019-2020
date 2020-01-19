@@ -6,7 +6,7 @@
 #include <stdio.h>
 #define N 4 //indica il numero di pietre diverse
 //se si modifica N, va modificato in teoria tutto il programma perche ci sono gli enum
-#define nome_file "test.txt"
+#define nome_file "pietre_e1.txt"
 
 typedef enum{
     zaffiro=0,smeraldo,rubino,topazio
