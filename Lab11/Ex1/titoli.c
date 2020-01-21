@@ -3,13 +3,9 @@
 //
 #include <stdlib.h>
 #include <string.h>
-#include "quotazioni.h"
 #include "titoli.h"
 
-struct _titolo{
-    char cod[maxchar+1];
-    quotazioni q;
-};
+
 typedef struct node *link;
 struct node{
     titolo t;
@@ -21,20 +17,7 @@ struct _titoli{
     int n;
 };
 
-static titolo TITOLOinit(char *cod){
-    titolo t=malloc(sizeof *t);
-    strcpy(t->cod,cod);
-    t->q=QUOTAZIONIinit();
-    return t;
-}
-static void TITOLOfree(titolo t){
-    if (t==NULL) return;
-    QUOTAZIONIfree(t->q);
-    free(t);
-}
-void TITOLOinsert(titolo t,quotazione q){
-    QUOTAZIONIinsert(t->q,q);
-}
+
 static titolo titoloSetNULL(){
     return NULL;
 }
@@ -66,17 +49,17 @@ void TITOLIfree(titoli t){
 }
 static void TITOLIinsert(titoli T,titolo t){
     link x,p;
-    if(T->h==T->z || strcmp(T->h->t->cod,t->cod)>0){
+    if(T->h==T->z || strcmp(CodbyT(T->h->t),CodbyT(t))>0){
         T->h=NEWnode(t,T->h);
         return;
     }
-    for(x=T->h->next,p=T->h;x!=T->z && strcmp(t->cod,x->t->cod)>0;p=x,x=x->next);
+    for(x=T->h->next,p=T->h;x!=T->z && strcmp(CodbyT(t),CodbyT(x->t))>0;p=x,x=x->next);
     p->next=NEWnode(t,x);
     return;
 }
 static titolo searchlist(link h,char *cod,link z){
     if(h==z) return titoloSetNULL();
-    if(strcmp(h->t->cod,cod)==0)
+    if(strcmp(CodbyT(h->t),cod)==0)
         return h->t;
     return searchlist(h->next,cod,z);
 }
@@ -91,8 +74,4 @@ titolo TITOLIinsertW(titoli T,char *cod){
     t=TITOLOinit(cod);
     TITOLIinsert(T,t);
     return t;
-}
-
-quotazioni QbyT(titolo t){
-    return t->q;
 }
