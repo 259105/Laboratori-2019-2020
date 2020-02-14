@@ -1,0 +1,8 @@
+azienda0
+persona1 persona0 persona3 persona2
+azienda1
+persona3 persona2 persona0 persona1
+azienda2
+persona0 persona3 persona2 persona1
+azienda3
+persona1 persona0 persona3 persona2
