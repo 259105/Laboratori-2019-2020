@@ -5,30 +5,6 @@
 #include <stdio.h>
 #include "Graph.h"
 
-void CountingSort(int *A, int N) {
-    int i, l=0, r=N-1,k=0;
-    //ricerca del massimo
-    for(i=0;i<N;i++)
-        if(A[i]>k)
-            k=A[i];
-    k++;
-    int *C=calloc(k, sizeof(int)),*B=malloc(sizeof(int)*N);
-
-    for (i = l; i <= r; i++)
-        C[A[i]]++;
-
-    for (i = 1; i < k; i++)
-        C[i] += C[i-1];
-
-    for (i = r; i >= l; i--) {
-        B[C[A[i]]-1] = A[i];
-        C[A[i]]--;
-    }
-
-    for (i = l; i <= r; i++)
-        A[i] = B[i];
-}
-
 int main(int argc,char** argv){
     if(argc!=3) exit(1);
     FILE *fg,*fs;
