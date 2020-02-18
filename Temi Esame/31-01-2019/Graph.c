@@ -230,20 +230,21 @@ int GRAPGv(Graph G){
 
 int check(Graph G,int* k,int n){
     UFinit(G->V);
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++) //per ogni vertice del kernel
         for(int j=0;j<n;j++){
-            if(i==j) continue;
+            if(i==j) continue; // faccio confronto con tutti gli altri vertici del kernel
             for(int x=0;x<G->V;x++){
-                if(G->madjno[k[i]][x]==0) continue;
-                if(G->madjno[k[i]][x]!=0 && x==k[j]) return 0;
-                else if(!UFfind(k[i],x)) UFunion(k[i],x);
+                if(G->madjno[k[i]][x]==0) continue; // se non è adicente salto l'iter
+                if(G->madjno[k[i]][x]!=0 && x==k[j]) return 0; // se è adiacente ad un altro vertice del kernel (condizione 1)
+                else if(!UFfind(k[i],x)) UFunion(k[i],x); // se è adiacente con un vertice nn appartenente al kernel
+                //lo aggiungo nella UF
             }
         }
     int c,i;
-    for(c=0,i=0;i<G->V;i++)
+    for(c=0,i=0;i<G->V;i++) // controllo se tutti i vertici sono nella stessa cc
         if(UFfind(0,i)) c++; //funziona solo con una cc;
     UFfree();
-    if(c!=i) return 0;
+    if(c!=i) return 0; //se qualche vertice non fa parte della stessa cc ritorno 0 (condizione 2)
     return 1;
 }
 
