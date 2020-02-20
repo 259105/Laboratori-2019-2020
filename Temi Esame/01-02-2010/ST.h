@@ -5,7 +5,9 @@ typedef struct symboltable *ST;
 
 ST    STinit(int maxN);
 void  STfree(ST st);
+int   STsize(ST st);
 void  STinsert(ST st, char *str, int i);
+void  STinsertsort(ST st, char *str);
 int   STsearch(ST st, char *str);
 char *STsearchByIndex(ST st, int i);
 

@@ -1,0 +1,23 @@
+6 10 3
+T
+M
+G
+B
+V
+F
+T M 5
+B T -1
+B M 6
+M B -4
+V M -7
+B V 8
+G B -6
+F G -2
+B F -9
+T G -12
+G R 9
+V V 12
+M R 8
+G B 7
+V R 4
+B R 5

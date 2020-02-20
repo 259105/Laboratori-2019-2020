@@ -35,6 +35,10 @@ void STfree(ST st) {
   free(st);
 }
 
+int STsize(ST st) {
+  return st->N;
+}
+
 void STinsert(ST st, char *str, int i) {
   if (i >= st->maxN) {
     st->a = realloc(st->a, (2*st->maxN)*sizeof(char *));
@@ -44,6 +48,23 @@ void STinsert(ST st, char *str, int i) {
   }
   st->a[i] = strdup(str);
   st->N++;
+}
+
+void STinsertsort(ST st, char *str) {
+    if(!st->N){
+        st->a[st->N++]=strdup(str);
+        return;
+    }
+    st->N++;
+    int i=0;
+    while (i<st->N-1 && strcmp(st->a[i],str)<0)
+        i++;
+    if(i==st->N-1) st->a[i]=strdup(str);
+    else{
+        for(int j=st->N-1;j>=i;j--)
+            st->a[j]=st->a[j-1];
+        st->a[i]=strdup(str);
+    }
 }
 
 int STsearch(ST st, char *str) {
